@@ -32,6 +32,23 @@ class CustomUserManager(BaseUserManager):
         user.set_password(password)
         user.save()
         return user
+    
+
+class Country(models.Model):
+    iso = models.CharField(max_length=2)
+    iso3 = models.CharField(max_length=3)
+    name = models.CharField(max_length=200)
+    nicename = models.CharField(max_length=200)
+    phonecode = models.CharField(max_length=10)
+    numcode = models.CharField(max_length=10, null=True, blank=True)
+    sort_order = models.PositiveIntegerField(null=True, blank=True)
+
+    class Meta:
+        verbose_name = 'Country'
+        verbose_name_plural = 'Countries'
+
+    def __str__(self):
+        return self.nicename
 
 
 
